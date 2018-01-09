@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Beanie API Bindings
 
 This gem provides an API interface into the Beanie cloud-based ERP system.
