@@ -1,6 +1,7 @@
+<<<<<<< HEAD
 # Beanie API Bindings
 
-TODO: Write a gem description
+This gem provides an API interface into the Beanie cloud-based ERP system.
 
 ## Installation
 
