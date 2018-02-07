@@ -29,8 +29,6 @@
 #
 # Ruby bindings for the Beanie API
 # Docs at http://bean.ie/docs/api/ruby
-require 'cgi'
-require 'openssl'
 require 'rest-client'
 require 'json'
 
