@@ -29,6 +29,23 @@
 #
 module Beanie
   class Customer < Api
-    attr_accessor :id, :balance, :state, :terms, :customer_vat, :contact_id, :currency
+    attr_accessor :id, :name, :state, :balance, :terms, :customer_vat, :currency
+    attr_accessor :internal_ref, :credit_limit, :credit_hold, :invoice_method
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @name = nil
+      @state = nil
+      @balance = nil
+      @terms = nil
+      @customer_vat = nil
+      @currency = nil
+      @internal_ref = nil
+      @credit_limit = nil
+      @credit_hold = nil
+      @invoice_method = nil
+    end
   end
 end

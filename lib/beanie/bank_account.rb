@@ -29,6 +29,16 @@
 #
 module Beanie
   class BankAccount < Api
-    attr_accessor :id, :iban, :name, :swift, :nominal_account_id, :contact_id
+    attr_accessor :id, :iban, :name, :swift, :nominal_account_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @iban = nil
+      @name = nil
+      @swift = nil
+      @nominal_account_id = nil
+    end
   end
 end

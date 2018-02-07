@@ -32,13 +32,19 @@ module Beanie
     attr_accessor :id, :code, :name, :description
 
     #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @code = nil
+      @name = nil
+      @description = nil
+    end
+
+    #
     # Find a work centre group by code
     def self.find_by_code(code)
       data = self.get(:code => code)
-      wcg_data = data['work_centre_group']
-      wcg = new
-      wcg.populate(wcg_data, :id, :code, :name, :description)
-      wcg
+      new.populate(data['work_centre_group'])
     end
   end
 end

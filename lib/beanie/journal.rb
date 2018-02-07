@@ -30,5 +30,15 @@
 module Beanie
   class Journal < Api
     attr_accessor :id, :date, :folio, :title, :number
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @date = nil
+      @folio = nil
+      @title = nil
+      @number = nil
+    end
   end
 end

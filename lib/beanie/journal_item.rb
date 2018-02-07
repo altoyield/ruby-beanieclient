@@ -30,5 +30,15 @@
 module Beanie
   class JournalItem < Api
     attr_accessor :id, :amount, :is_credit, :journal_id, :nominal_account_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @amount = nil
+      @is_credit = nil
+      @journal_id = nil
+      @nominal_account_id = nil
+    end
   end
 end

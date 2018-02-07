@@ -40,6 +40,15 @@ module Beanie
       ["VAT", TAX_TYPE_SALES],
       ["PAYE", TAX_TYPE_PAYROLL]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @tax_type = nil
+      @number = nil
+      @nominal_account_id = nil
+    end
   
     #
     # Tax Type as a name

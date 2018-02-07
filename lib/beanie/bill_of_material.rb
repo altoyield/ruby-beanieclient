@@ -28,18 +28,17 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 module Beanie
-  class FixedAsset < Api
-    attr_accessor :id, :acquired, :cost, :name, :value, :nominal_account_id
+  class ProductionOrder < Api
+    attr_accessor :id, :name, :revision, :description, :stock_item_id
 
     #
     # Initialize instance variables
     def initialize
       @id = nil
-      @acquired = nil
-      @cost = nil
       @name = nil
-      @value = nil
-      @nominal_account_id = nil
+      @revision = nil
+      @description = nil
+      @stock_item_id = nil
     end
   end
 end

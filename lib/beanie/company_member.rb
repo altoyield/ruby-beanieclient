@@ -30,5 +30,14 @@
 module Beanie
   class CompanyMember < Api
     attr_accessor :id, :member_id, :role, :member_email
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @member_id = nil
+      @role = nil
+      @member_email = nil
+    end
   end
 end

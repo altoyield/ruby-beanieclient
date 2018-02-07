@@ -28,7 +28,17 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 module Beanie
-  class ContactNote < Api
-    attr_accessor :id, :contact_id, :note, :member_id
+  class BomItem < Api
+    attr_accessor :id, :stock_item_id, :quantity, :notes, :designators
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @stock_item_id = nil
+      @quantity = nil
+      @notes = nil
+      @designators = nil
+    end
   end
 end

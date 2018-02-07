@@ -42,5 +42,17 @@ module Beanie
       ["Work In Progress", TYPE_WORK_IN_PROGRESS],
       ["Finished Goods", TYPE_FINISHED_GOODS]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @description = nil
+      @item_type = nil
+      @name = nil
+      @sku = nil
+      @stock_category_id = nil
+      @unit_of_measure = nil
+    end
   end
 end

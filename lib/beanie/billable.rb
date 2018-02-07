@@ -31,5 +31,16 @@ module Beanie
   class Billable < Api
     attr_accessor :id, :sales_invoice_item_id, :sales_order_item_id
     attr_accessor :quantity, :start, :description
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @sales_invoice_item_id = nil
+      @sales_order_item_id = nil
+      @quantity = nil
+      @start = nil
+      @description = nil
+    end
   end
 end

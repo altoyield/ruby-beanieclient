@@ -50,6 +50,17 @@ module Beanie
       ["Contracts", CATEGORY_CONTRACTS],
       ["Miscellaneous", CATEGORY_MISCELLANEOUS]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @bxref = nil
+      @mime_type = nil
+      @size = nil
+      @src_file = nil
+      @category = nil
+    end
   
     #
     # Display a name for the document category

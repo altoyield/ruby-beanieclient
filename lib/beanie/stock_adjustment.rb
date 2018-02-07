@@ -47,6 +47,19 @@ module Beanie
       ["Move from Inventory", TYPE_FROM_INVENTORY],
       ["Spoilage", TYPE_SPOILAGE]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @effective = nil
+      @adjustment_type = nil
+      @amount = nil
+      @note = nil
+      @stock_item_id = nil
+      @stock_supplier_id = nil
+      @purchase_order_item_id = nil
+    end
   
     #
     # Convert the type into a useful name

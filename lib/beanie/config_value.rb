@@ -30,5 +30,13 @@
 module Beanie
   class ConfigValue < Api
     attr_accessor :id, :value, :config_type
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @value = nil
+      @config_type = nil
+    end
   end
 end

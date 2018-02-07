@@ -32,9 +32,62 @@ require 'active_support/inflector'
 module Beanie
   class Api
     #
+    # Find all the objects
+    def self.all(opts = {})
+      data = get(opts)
+      objlist = []
+      data[new.object_name.pluralize].each do |objdata|
+        objlist << new.populate(objdata)
+      end
+      objlist
+    end
+
+    #
+    # Find an object based on its ID
+    def self.find(id)
+      data = get(:id => id)
+      obj = new
+      obj.populate(data[obj.object_name])
+    end
+
+    #
+    # Save the customer data
+    def save!(opts = {})
+      data = extract()
+      data.delete("id")
+      objdata = {object_name => data}
+      response = self.class.post(objdata, opts)
+      self.populate(response[self.object_name])
+    end
+
+    #
+    # Populate the instance variables from the provided hash.
+    def populate(data)
+      self.instance_variables.each do |var|
+        self.instance_variable_set(var, data[field_name(var)])
+      end
+      self
+    end
+
+    #
+    # Populate the instance variables from the provided hash.
+    def extract
+      data = {}
+      self.instance_variables.each do |var|
+        data[field_name(var)] = self.instance_variable_get(var)
+      end
+      data
+    end
+
+    #
+    # Determine the field name
+    def field_name(var)
+      var.to_s.gsub(/^@/, '')
+    end
+
+    #
     # Run a REST GET against the Beanie API.
     def self.get(opts = {})
-      puts "Beanie GET..."
       response = RestClient.get(build_url(opts), headers=set_headers)
       JSON.parse(response.body)
     end
@@ -42,7 +95,6 @@ module Beanie
     #
     # Run a REST PUT against the Beanie API.
     def self.put(data, opts = {})
-      puts "Beanie PUT..."
       response = RestClient.put(build_url(opts), data, headers=set_headers)
       JSON.parse(response.body)
     end
@@ -50,15 +102,13 @@ module Beanie
     #
     # Run a REST POST against the Beanie API.
     def self.post(data, opts = {})
-      puts "Beanie POST..."
-      response = RestClient.post(build_url(opts), data, headers=set_headers)
+      response = RestClient.post(build_url(opts), data.to_json, headers=set_headers)
       JSON.parse(response.body)
     end
 
     #
     # Run a REST DELETE against the Beanie API.
     def self.delete(data, opts = {})
-      puts "Beanie DELETE..."
       response = RestClient.delete(build_url(opts), headers=set_headers)
       JSON.parse(response.body)
     end
@@ -66,22 +116,23 @@ module Beanie
     #
     #
     def self.build_url(opts = {})
-      puts "BUILD URL. Opts:-"
-      p opts
       if opts[:url]
-        url = "#{Beanie.base_uri}#{opts[:url]}.json"
+        url = "#{Beanie.base_uri}#{opts[:url]}"
         opts.delete(:url)
       else
-        url = "#{Beanie.base_uri}/#{new.object_name.pluralize}.json"
+        url = "#{Beanie.base_uri}/#{new.construct_path(opts)}"
       end
+      if opts[:id]
+        url += "/#{opts[:id]}"
+        opts.delete(:id)
+      end
+      url += ".json"
       optstr = ""
       opts.each_key do |key|
         optstr += (optstr.length == 0) ? "?" : "&"
         optstr += "#{key.to_s}=#{opts[key]}"
       end
-      url += optstr
-      puts "URL: #{url}"
-      url
+      url + optstr
     end
 
     #
@@ -95,6 +146,12 @@ module Beanie
     end
 
     #
+    # Default mechanism for constructing a path
+    def construct_path(opts = {})
+      object_name.pluralize
+    end
+
+    #
     # Compute a Beanie object name from the class name.
     def object_name
       object_name = self.class.name.
@@ -103,15 +160,6 @@ module Beanie
           gsub(/([a-z\d])([A-Z])/,'\1_\2').
           tr("-", "_").
           downcase
-    end
-
-    #
-    # Populate the instance variables from the provided hash.
-    def populate(data, *vars)
-      vars.each do |var|
-        varsym = var.to_s.gsub(/^/, '@').to_sym
-        self.instance_variable_set(varsym, data[var.to_s])
-      end
     end
   end
 end

@@ -30,5 +30,14 @@
 module Beanie
   class ProductCategory < Api
     attr_accessor :id, :description, :name, :parent_category_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @description = nil
+      @name = nil
+      @parent_category_id = nil
+    end
   end
 end

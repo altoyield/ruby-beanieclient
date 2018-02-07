@@ -30,5 +30,16 @@
 module Beanie
   class BankStatement < Api
     attr_accessor :id, :end_date, :start_date, :upload_file, :bank_account_id, :document_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @end_date = nil
+      @start_date = nil
+      @upload_file = nil
+      @bank_account_id = nil
+      @document_id = nil
+    end
   end
 end

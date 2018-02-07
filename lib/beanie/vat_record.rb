@@ -46,6 +46,16 @@ module Beanie
       ["Services From", TYPE_SERVICES_FROM],
       ["Services To", TYPE_SERVICES_TO]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @amount = nil
+      @record_type = nil
+      @vat_return_id = nil
+      @sales_tax_rate = nil
+    end
   
     #
     # Conver the record type into a string

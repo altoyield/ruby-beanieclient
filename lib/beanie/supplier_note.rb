@@ -28,8 +28,15 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 module Beanie
-  class ContactAddress < Api
-    attr_accessor :id, :address_type, :address1, :address2, :address3, :city, :state_county
-    attr_accessor :zip_postcode, :contact_id, :country
+  class SupplierNote < Api
+    attr_accessor :id, :member, :note
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @member = nil
+      @note = nil
+    end
   end
 end

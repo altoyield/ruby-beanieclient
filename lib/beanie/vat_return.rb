@@ -41,5 +41,20 @@ module Beanie
       ["Supplementary Return", RETURN_TYPE_SUPPLEMENTARY],
       ["Amended Return", RETURN_TYPE_AMENDED]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @start_date = nil
+      @end_date = nil
+      @return_type = nil
+      @purchase = nil
+      @sales = nil
+      @goods_from = nil
+      @goods_to = nil
+      @services_from = nil
+      @services_to = nil
+    end
   end
 end

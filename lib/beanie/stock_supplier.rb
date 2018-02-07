@@ -31,5 +31,18 @@ module Beanie
   class StockSupplier < Api
     attr_accessor :id, :priority, :supplier_partno, :lot_size, :lead_time, :last_price
     attr_accessor :stock_item_id, :supplier_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @priority = nil
+      @supplier_partno = nil
+      @lot_size = nil
+      @lead_time = nil
+      @last_price = nil
+      @stock_item_id = nil
+      @supplier_id = nil
+    end
   end
 end

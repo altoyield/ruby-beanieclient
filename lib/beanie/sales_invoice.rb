@@ -55,6 +55,24 @@ module Beanie
       ["Overdue (Over 90 days)", STATE_OVERDUE4],
       ["Overdue (Over 120 days)", STATE_OVERDUE5]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @date = nil
+      @due_date = nil
+      @number = nil
+      @is_credit_note = nil
+      @local_gross = nil
+      @shipping = nil
+      @sub_total = nil
+      @tax = nil
+      @tax_point = nil
+      @sales_order_id = nil
+      @original_invoice = nil
+      @state = nil
+    end
   
     #
     # Show the state in a useful format

@@ -54,6 +54,15 @@ module Beanie
       ["Other Expense", NA_TYPE_OTHER_EXPENSE],
       ["Other Income", NA_TYPE_OTHER_INCOME]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @na_type = nil
+      @name = nil
+      @parent_category_id = nil
+    end
   
     #
     # Show proper name for type

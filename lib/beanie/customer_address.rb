@@ -28,18 +28,36 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 module Beanie
-  class FixedAsset < Api
-    attr_accessor :id, :acquired, :cost, :name, :value, :nominal_account_id
+  class CustomerAddress < Api
+    attr_accessor :customer_id, :id, :label, :name, :address1, :address2, :address3, :city
+    attr_accessor :state_county, :zip_postcode, :country_id, :email, :phone, :website
 
     #
     # Initialize instance variables
     def initialize
       @id = nil
-      @acquired = nil
-      @cost = nil
+      @customer_id = nil
+      @label = nil
       @name = nil
-      @value = nil
-      @nominal_account_id = nil
+      @address1 = nil
+      @address2 = nil
+      @address3 = nil
+      @city = nil
+      @state_county = nil
+      @zip_postcode = nil
+      @country = nil
+      @email = nil
+      @phone = nil
+      @website = nil
+    end
+
+    #
+    # Construct the path a little differently...
+    def construct_path(opts = {})
+      raise ":customer_id is not defined" unless opts[:customer_id]
+      path = "/customers/#{opts[:customer_id]}/customer_addresses"
+      opts.delete(:customer_id)
+      path
     end
   end
 end

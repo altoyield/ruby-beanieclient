@@ -28,18 +28,31 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 module Beanie
-  class FixedAsset < Api
-    attr_accessor :id, :acquired, :cost, :name, :value, :nominal_account_id
+  class ProductionOrder < Api
+    attr_accessor :id, :number, :state, :quantity, :notes, :provisioning
+    attr_accessor :sales_order_id, :bill_of_material_id, :work_centre_group_id
 
     #
     # Initialize instance variables
     def initialize
       @id = nil
-      @acquired = nil
-      @cost = nil
-      @name = nil
-      @value = nil
-      @nominal_account_id = nil
+      @number = nil
+      @state = nil
+      @quantity = nil
+      @notes = nil
+      @provisioning = nil
+      @sales_order_id = nil
+      @bill_of_material_id = nil
+      @work_centre_group_id = nil
+    end
+
+    #
+    # Construct the path a little differently...
+    def construct_path(opts = {})
+      raise ":work_centre_group_id is not defined" unless opts[:work_centre_group_id]
+      path = "/work_centre_groups/#{opts[:work_centre_group_id]}/production_orders"
+      opts.delete(:work_centre_group_id)
+      path
     end
   end
 end

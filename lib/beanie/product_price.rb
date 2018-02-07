@@ -30,5 +30,15 @@
 module Beanie
   class ProductPrice < Api
     attr_accessor :id, :amount, :effective, :sales_tax_id, :product_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @amount = nil
+      @effective = nil
+      @sales_tax_id = nil
+      @product_id = nil
+    end
   end
 end

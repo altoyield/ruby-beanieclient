@@ -30,5 +30,14 @@
 module Beanie
   class NominalAccount < Api
     attr_accessor :id, :code, :name, :nominal_account_category_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @code = nil
+      @name = nil
+      @nominal_account_category_id = nil
+    end
   end
 end

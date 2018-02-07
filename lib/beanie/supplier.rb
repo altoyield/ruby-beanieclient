@@ -30,6 +30,19 @@
 module Beanie
   class Supplier < Api
     attr_accessor :id, :balance, :state, :supplier_vat, :terms, :lead_time, :minimum_order_amount
-    attr_accessor :contact_id, :currency
+    attr_accessor :currency
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @balance = nil
+      @state = nil
+      @supplier_vat = nil
+      @terms = nil
+      @lead_time = nil
+      @minimum_order_amount = nil
+      @currency = nil
+    end
   end
 end

@@ -31,5 +31,16 @@ module Beanie
   class PurchaseOrder < Api
     attr_accessor :id, :date, :number, :title
     attr_accessor :currency, :supplier_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @date = nil
+      @number = nil
+      @title = nil
+      @currency = nil
+      @supplier_id = nil
+    end
   end
 end

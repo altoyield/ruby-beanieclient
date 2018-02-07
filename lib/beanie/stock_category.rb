@@ -30,5 +30,15 @@
 module Beanie
   class StockCategory < Api
     attr_accessor :id, :code, :name, :description, :nominal_account_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @code = nil
+      @name = nil
+      @description = nil
+      @nominal_account_id = nil
+    end
   end
 end

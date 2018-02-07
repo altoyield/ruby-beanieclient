@@ -75,6 +75,24 @@ module Beanie
       ["Quarterly Rate", SERVICE_PERIOD_QUARTERLY],
       ["Annual Rate", SERVICE_PERIOD_ANNUALLY]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @completion = nil
+      @description = nil
+      @discount = nil
+      @frequency = nil
+      @quantity = nil
+      @rundate = nil
+      @state = nil
+      @sales_order_id = nil
+      @product_id = nil
+      @service_period = nil
+      @unit_cost = nil
+      @sales_tax = nil
+    end
   
     #
     # Pretty name for the state

@@ -30,5 +30,18 @@
 module Beanie
   class SalesOrder < Api
     attr_accessor :id, :cash_customer_ref, :number, :date, :title, :your_ref, :currency, :customer_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @cash_customer_ref = nil
+      @number = nil
+      @date = nil
+      @title = nil
+      @your_ref = nil
+      @currency = nil
+      @customer_id = nil
+    end
   end
 end

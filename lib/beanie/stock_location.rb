@@ -30,5 +30,13 @@
 module Beanie
   class StockLocation < Api
     attr_accessor :id, :description, :name
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @description = nil
+      @name = nil
+    end
   end
 end

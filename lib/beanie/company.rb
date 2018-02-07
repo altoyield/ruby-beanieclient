@@ -36,5 +36,32 @@ module Beanie
     attr_accessor :sales_shipping_nominal_account_id
     attr_accessor :accounts_receivable_nominal_account_id
     attr_accessor :accounts_payable_nominal_account_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @name = nil
+      @email = nil
+      @address1 = nil
+      @address2 = nil
+      @address3 = nil
+      @city = nil
+      @state_county = nil
+      @website = nil
+      @phone = nil
+      @fax = nil
+      @zip_postcode = nil
+      @registration = nil
+      @next_fye = nil
+      @runcom = nil
+      @country = nil
+      @currency = nil
+      @invoice_template_id = nil
+      @purchase_shipping_nominal_account_id = nil
+      @sales_shipping_nominal_account_id = nil
+      @accounts_receivable_nominal_account_id = nil
+      @accounts_payable_nominal_account_id = nil
+    end
   end
 end

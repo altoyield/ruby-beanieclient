@@ -32,6 +32,16 @@ module Beanie
     attr_accessor :id, :name, :location, :description, :work_centre_group_id
 
     #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @name = nil
+      @location = nil
+      @description = nil
+      @work_centre_group_id = nil
+    end
+
+    #
     # Find all work centres under a specific work centre group
     def self.find_all_by_group(work_centre_group_id)
       all = []

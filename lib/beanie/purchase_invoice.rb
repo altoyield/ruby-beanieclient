@@ -32,5 +32,24 @@ module Beanie
     attr_accessor :id, :date, :due_date, :is_credit_note, :is_paid, :local_gross, :number
     attr_accessor :original_invoice_id, :shipping, :sub_total, :tax, :tax_point
     attr_accessor :purchase_order_id, :document_id
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @date = nil
+      @due_date = nil
+      @is_credit_note = nil
+      @is_paid = nil
+      @local_gross = nil
+      @number = nil
+      @original_invoice_id = nil
+      @shipping = nil
+      @sub_total = nil
+      @tax = nil
+      @tax_point = nil
+      @purchase_order_id = nil
+      @document_id = nil
+    end
   end
 end

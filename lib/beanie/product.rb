@@ -32,6 +32,19 @@ module Beanie
     attr_accessor :id, :description, :name, :sku, :is_service
     attr_accessor :nominal_account_id, :product_category_id, :unit_of_measure
 
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @description = nil
+      @name = nil
+      @sku = nil
+      @is_service = nil
+      @nominal_account_id = nil
+      @product_category_id = nil
+      @unit_of_measure = nil
+    end
+
     def self.find_by_name(name)
       puts "Find by name: #{name}"
       Beanie.find("products", "name", name)

@@ -43,5 +43,18 @@ module Beanie
       ["Back-Order", STATE_BACKORDER],
       ["Item Complete", STATE_COMPLETE]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @description = nil
+      @discount = nil
+      @quantity = nil
+      @state = nil
+      @unit_cost = nil
+      @purchase_order_id = nil
+      @sales_tax = nil
+    end
   end
 end

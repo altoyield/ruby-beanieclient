@@ -40,6 +40,16 @@ module Beanie
       ["Acknowledged (Read)", STATE_READ],
       ["Archived", STATE_ARCHIVED]
     ].freeze
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @state = nil
+      @message = nil
+      @url = nil
+      @member_id = nil
+    end
   
     #
     # Printable form of the state name

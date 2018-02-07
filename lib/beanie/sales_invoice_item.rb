@@ -31,5 +31,20 @@ module Beanie
   class SalesInvoiceItem < Api
     attr_accessor :id, :description, :discount, :quantity, :run_date, :run_length, :unit_cost
     attr_accessor :sales_invoice_id, :sales_order_item_id, :sales_tax
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @description = nil
+      @discount = nil
+      @quantity = nil
+      @run_date = nil
+      @run_length = nil
+      @unit_cost = nil
+      @sales_invoice_id = nil
+      @sales_order_item_id = nil
+      @sales_tax = nil
+    end
   end
 end

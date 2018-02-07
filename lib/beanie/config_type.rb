@@ -30,6 +30,18 @@
 module Beanie
   class ConfigType < Api
     attr_accessor :id, :defvalue, :description, :name, :regexp, :tag, :typecode
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @defvalue = nil
+      @description = nil
+      @name = nil
+      @regexp = nil
+      @tag = nil
+      @typecode = nil
+    end
   
     TYPE_BOOLEAN = 0
     TYPE_INTEGER = 1

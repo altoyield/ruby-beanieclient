@@ -31,5 +31,21 @@ module Beanie
   class BankStatementData < Api
     attr_accessor :id, :cr_amount, :date, :dr_amount, :balance, :bank_statement_id
     attr_accessor :narrative1, :narrative2, :narrative3, :narrative4, :narrative5
+
+    #
+    # Initialize instance variables
+    def initialize
+      @id = nil
+      @cr_amount = nil
+      @date = nil
+      @dr_amount = nil
+      @balance = nil
+      @bank_statement_id = nil
+      @narrative1 = nil
+      @narrative2 = nil
+      @narrative3 = nil
+      @narrative4 = nil
+      @narrative5 = nil
+    end
   end
 end
