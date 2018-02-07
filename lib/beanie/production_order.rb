@@ -29,7 +29,7 @@
 #
 module Beanie
   class ProductionOrder < Api
-    attr_accessor :id, :number, :state, :quantity, :notes, :provisioning
+    attr_accessor :id, :number, :state, :quantity, :notes
     attr_accessor :sales_order_id, :bill_of_material_id, :work_centre_group_id
 
     #
@@ -40,10 +40,23 @@ module Beanie
       @state = nil
       @quantity = nil
       @notes = nil
-      @provisioning = nil
       @sales_order_id = nil
       @bill_of_material_id = nil
       @work_centre_group_id = nil
+    end
+
+    #
+    # Get the private data
+    def private_data
+      response = ProductionOrder.get(:url => "/production_orders/#{@id}/private_data")
+      response["data"]
+    end
+
+    #
+    # Update/set the private data
+    def private_data=(data)
+      pdata = {:data => data}
+      response = ProductionOrder.post(pdata, :url => "/production_orders/#{@id}/private_data")
     end
 
     #

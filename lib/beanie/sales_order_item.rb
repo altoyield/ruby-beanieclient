@@ -29,7 +29,7 @@
 #
 module Beanie
   class SalesOrderItem < Api
-    attr_accessor :id, :completion, :description, :discount, :frequency, :quantity, :rundate, :state
+    attr_accessor :id, :completion, :description, :discount, :quantity, :rundate, :state
     attr_accessor :sales_order_id, :product_id, :service_period, :unit_cost, :sales_tax
   
     STATE_NEW = 0
@@ -42,20 +42,6 @@ module Beanie
       ["Billable", STATE_READY],
       ["Complete", STATE_DONE],
       ["Blocked", STATE_BLOCKED]
-    ].freeze
-  
-    BILL_FREQUENCY_IMMEDIATE = 0
-    BILL_FREQUENCY_WEEKLY = 1
-    BILL_FREQUENCY_MONTHLY = 2
-    BILL_FREQUENCY_QUARTERLY = 3
-    BILL_FREQUENCY_ANNUALLY = 4
-  
-    BILL_FREQUENCY_NAMES = [
-      ["Immediate", BILL_FREQUENCY_IMMEDIATE],
-      ["Weekly", BILL_FREQUENCY_WEEKLY],
-      ["Monthly", BILL_FREQUENCY_MONTHLY],
-      ["Quarterly", BILL_FREQUENCY_QUARTERLY],
-      ["Yearly", BILL_FREQUENCY_ANNUALLY]
     ].freeze
   
     SERVICE_PERIOD_ONEOFF = 0
@@ -83,7 +69,6 @@ module Beanie
       @completion = nil
       @description = nil
       @discount = nil
-      @frequency = nil
       @quantity = nil
       @rundate = nil
       @state = nil
@@ -98,15 +83,6 @@ module Beanie
     # Pretty name for the state
     def state_name
       STATE_NAMES[state][0]
-    end
-  
-    #
-    # Pretty name for the frequency
-    def frequency_name
-      BILL_FREQUENCY_NAMES.each do |fn|
-        return fn[0] if fn[1] == self.frequency
-      end
-      return "Unknown?"
     end
   
     #
@@ -131,6 +107,20 @@ module Beanie
     # Is this a one-off rather than a time-based item?
     def one_off?
       self.service_period == SERVICE_PERIOD_ONEOFF
+    end
+
+    #
+    # Get the private data
+    def private_data
+      response = SalesOrderItem.get(:url => "/sales_order_items/#{@id}/private_data")
+      response["data"]
+    end
+
+    #
+    # Update/set the private data
+    def private_data=(data)
+      pdata = {:data => data}
+      response = SalesOrderItem.post(pdata, :url => "/sales_order_items/#{@id}/private_data")
     end
   end
 end

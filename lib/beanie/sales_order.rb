@@ -29,7 +29,24 @@
 #
 module Beanie
   class SalesOrder < Api
-    attr_accessor :id, :cash_customer_ref, :number, :date, :title, :your_ref, :currency, :customer_id
+    attr_accessor :id, :cash_customer_ref, :number, :date, :title, :billing_frequency
+    attr_accessor :your_ref, :currency_id, :customer_id
+
+    BILL_FREQUENCY_DAILY = 0
+    BILL_FREQUENCY_WEEKLY = 1
+    BILL_FREQUENCY_FORTNIGHTLY = 2
+    BILL_FREQUENCY_MONTHLY = 3
+    BILL_FREQUENCY_QUARTERLY = 4
+    BILL_FREQUENCY_ANNUALLY = 5
+
+    BILL_FREQUENCY_NAMES = [
+      ["Daily", BILL_FREQUENCY_DAILY],
+      ["Weekly", BILL_FREQUENCY_WEEKLY],
+      ["Fortnightly", BILL_FREQUENCY_FORTNIGHTLY],
+      ["Monthly", BILL_FREQUENCY_MONTHLY],
+      ["Quarterly", BILL_FREQUENCY_QUARTERLY],
+      ["Yearly", BILL_FREQUENCY_ANNUALLY]
+    ].freeze
 
     #
     # Initialize instance variables
@@ -39,9 +56,19 @@ module Beanie
       @number = nil
       @date = nil
       @title = nil
+      @billing_frequency = BILL_FREQUENCY_DAILY
       @your_ref = nil
       @currency = nil
       @customer_id = nil
+    end
+  
+    #
+    # Pretty name for the frequency
+    def frequency_name
+      BILL_FREQUENCY_NAMES.each do |fn|
+        return fn[0] if fn[1] == self.billing_frequency
+      end
+      return "Unknown?"
     end
   end
 end

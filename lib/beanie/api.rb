@@ -126,6 +126,10 @@ module Beanie
         url += "/#{opts[:id]}"
         opts.delete(:id)
       end
+      if opts[:extension]
+        url += "/#{opts[:extension]}"
+        opts.delete(:extension)
+      end
       url += ".json"
       optstr = ""
       opts.each_key do |key|
