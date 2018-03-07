@@ -56,7 +56,16 @@ module Beanie
       data = extract()
       data.delete("id")
       objdata = {object_name => data}
-      response = self.class.post(objdata, opts)
+      if @id
+        #
+        # Needs an update...
+        opts[:id] = @id
+        response = self.class.put(objdata, opts)
+    else
+        #
+        # Needs a create!
+        response = self.class.post(objdata, opts)
+      end
       self.populate(response[self.object_name])
     end
 
@@ -96,7 +105,11 @@ module Beanie
     # Run a REST PUT against the Beanie API.
     def self.put(data, opts = {})
       response = RestClient.put(build_url(opts), data, headers=set_headers)
-      JSON.parse(response.body)
+      if response.body and response.body.length > 0
+        JSON.parse(response.body)
+      else
+        ""
+      end
     end
 
     #

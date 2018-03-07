@@ -28,7 +28,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 # Ruby bindings for the Beanie API
-# Docs at http://bean.ie/docs/api/ruby
+# Docs at http://bean.ie/help/api/ruby
 require 'rest-client'
 require 'json'
 
@@ -105,13 +105,12 @@ module Beanie
                                       'Set your API Key using "Beanie.api_key = <API-KEY>". ' \
                                       'Set your Secret Key using "Beanie.secret_key = <SECRET>". ' \
                                       'You can generate API keys from the Beanie web interface. ' \
-                                      'See https://bean.ie/en/apikey for details or email support@bean.ie ' \
-                                      'for further assistance.')
+                                      'See https://bean.ie/help/api/key for details or email ' \
+                                      'support@bean.ie for further assistance.')
       end
       url = "#{@base_uri}/api/authenticate"
       data = {:api_key => @api_key, :secret_key => @secret_key}
       response = RestClient.post(url, data.to_json, :content_type => :json, :accept => :json)
-      puts "Token response: #{response.code} (data: #{response.body})"
       raise AuthenticationError.new('Authentication failure.') unless response.code == 202
       data = JSON.parse(response.body)
       @@token = data['token']

@@ -43,20 +43,25 @@ module Beanie
       @sales_order_id = nil
       @bill_of_material_id = nil
       @work_centre_group_id = nil
+      @_private_data = nil
     end
 
     #
     # Get the private data
     def private_data
-      response = ProductionOrder.get(:url => "/production_orders/#{@id}/private_data")
-      response["data"]
+      unless @_private_data
+        response = ProductionOrder.get(:url => "/production_orders/#{@id}/private_data")
+        @_private_data = response["data"]
+      end
+      return @_private_data
     end
 
     #
     # Update/set the private data
     def private_data=(data)
+      @_private_data = data
       pdata = {:data => data}
-      response = ProductionOrder.post(pdata, :url => "/production_orders/#{@id}/private_data")
+      ProductionOrder.post(pdata, :url => "/production_orders/#{@id}/private_data")
     end
 
     #

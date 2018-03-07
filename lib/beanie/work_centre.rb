@@ -29,16 +29,39 @@
 #
 module Beanie
   class WorkCentre < Api
-    attr_accessor :id, :name, :location, :description, :work_centre_group_id
+    attr_accessor :id, :name, :state, :location, :description, :work_centre_group_id
+
+    STATE_UNKNOWN = 0
+    STATE_MAINTENANCE = 1
+    STATE_OFFLINE = 2
+    STATE_READY = 3
+    STATE_BUSY = 4
+    STATE_DONE = 5
+
+    STATE_NAMES = [
+      ["Unknown State", STATE_UNKNOWN],
+      ["Maintenance Mode", STATE_MAINTENANCE],
+      ["Offline (Unavailable)", STATE_OFFLINE],
+      ["Ready for Work", STATE_READY],
+      ["Working (Busy)", STATE_BUSY],
+      ["Work Complete", STATE_DONE]
+    ].freeze
 
     #
     # Initialize instance variables
     def initialize
       @id = nil
       @name = nil
+      @state = nil
       @location = nil
       @description = nil
       @work_centre_group_id = nil
+    end
+
+    #
+    # State name
+    def state_name
+      STATE_NAMES[@state][0]
     end
 
     #
@@ -58,9 +81,12 @@ module Beanie
     #
     # Construct the path a little differently...
     def construct_path(opts = {})
-      raise ":work_centre_group_id is not defined" unless opts[:work_centre_group_id]
-      path = "/work_centre_groups/#{opts[:work_centre_group_id]}/work_centres"
-      opts.delete(:work_centre_group_id)
+      if opts[:work_centre_group_id]
+        path = "/work_centre_groups/#{opts[:work_centre_group_id]}/work_centres"
+        opts.delete(:work_centre_group_id)
+      else
+        path = "/work_centres"
+      end
       path
     end
   end
