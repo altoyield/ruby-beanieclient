@@ -32,19 +32,25 @@ module Beanie
     attr_accessor :id, :name, :state, :location, :description, :work_centre_group_id
 
     STATE_UNKNOWN = 0
-    STATE_MAINTENANCE = 1
-    STATE_OFFLINE = 2
-    STATE_READY = 3
-    STATE_BUSY = 4
-    STATE_DONE = 5
+    STATE_DONE = 1
+    STATE_CANCELLED = 2
+    STATE_DELETED = 3
+    STATE_MAINTENANCE = 4
+    STATE_OFFLINE = 5
+    STATE_READY = 6
+    STATE_BUSY = 7
+    STATE_FINISHED = 8
 
     STATE_NAMES = [
       ["Unknown State", STATE_UNKNOWN],
+      ["Done", STATE_DONE],
+      ["Cancelled", STATE_CANCELLED],
+      ["* DELETED *", STATE_DELETED],
       ["Maintenance Mode", STATE_MAINTENANCE],
       ["Offline (Unavailable)", STATE_OFFLINE],
       ["Ready for Work", STATE_READY],
       ["Working (Busy)", STATE_BUSY],
-      ["Work Complete", STATE_DONE]
+      ["Work Completed", STATE_FINISHED]
     ].freeze
 
     #

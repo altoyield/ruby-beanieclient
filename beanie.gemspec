@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Dermot Tynan"]
   spec.email         = ["dtynan@kalopa.com"]
   spec.summary       = %q{Ruby bindings for the Beanie API}
-  spec.description   = %q{Beanie - your cloud accountant. See https://bean.ie for more details.}
+  spec.description   = %q{Beanie - Your Cloud-Based ERP System. See https://bean.ie for more details.}
   spec.homepage      = "https://bean.ie/help/api/ruby"
   spec.license       = "MIT"
 

@@ -79,6 +79,8 @@ require File.dirname(__FILE__) + '/beanie/tax_registration'
 require File.dirname(__FILE__) + '/beanie/vat_record'
 require File.dirname(__FILE__) + '/beanie/vat_return'
 
+DEFAULT_URI = "https://bean.ie"
+
 module Beanie
   @@token = nil
 
@@ -91,7 +93,7 @@ module Beanie
   end
 
   def self.connect(opts = {})
-    @base_uri = opts[:base_uri] ? opts[:base_uri] : 'https://bean.ie'
+    @base_uri = opts[:base_uri] ? opts[:base_uri] : DEFAULT_URI
     @api_key = opts[:api_key] if opts[:api_key]
     @secret_key = opts[:secret_key] if opts[:secret_key]
   end
@@ -105,7 +107,7 @@ module Beanie
                                       'Set your API Key using "Beanie.api_key = <API-KEY>". ' \
                                       'Set your Secret Key using "Beanie.secret_key = <SECRET>". ' \
                                       'You can generate API keys from the Beanie web interface. ' \
-                                      'See https://bean.ie/help/api/key for details or email ' \
+                                      'See #{DEFAULT_URI}/help/api/key for details or email ' \
                                       'support@bean.ie for further assistance.')
       end
       url = "#{@base_uri}/api/authenticate"
