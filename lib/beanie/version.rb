@@ -11,5 +11,5 @@ Swagger Codegen version: 2.4.0-SNAPSHOT
 =end
 
 module Beanie
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
 end
