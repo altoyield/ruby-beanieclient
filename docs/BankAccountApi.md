@@ -20,6 +20,13 @@ Creates a new bank account in the system
 ```ruby
 # load the gem
 require 'beanie'
+# setup authorization
+Beanie.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['ApiKey'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['ApiKey'] = 'Bearer'
+end
 
 api_instance = Beanie::BankAccountApi.new
 
@@ -46,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -66,6 +73,13 @@ Returns a single bank account if the user has access
 ```ruby
 # load the gem
 require 'beanie'
+# setup authorization
+Beanie.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['ApiKey'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['ApiKey'] = 'Bearer'
+end
 
 api_instance = Beanie::BankAccountApi.new
 
@@ -93,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -113,6 +127,13 @@ Returns all bank accounts from the system that the user has access to
 ```ruby
 # load the gem
 require 'beanie'
+# setup authorization
+Beanie.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['ApiKey'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['ApiKey'] = 'Bearer'
+end
 
 api_instance = Beanie::BankAccountApi.new
 
@@ -143,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
