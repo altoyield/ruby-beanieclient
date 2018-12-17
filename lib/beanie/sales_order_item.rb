@@ -31,19 +31,29 @@ module Beanie
   class SalesOrderItem < Api
     attr_accessor :id, :completion, :description, :discount, :quantity, :rundate, :state
     attr_accessor :sales_order_id, :product_id, :service_period, :unit_cost, :sales_tax
-  
+
     STATE_NEW = 0
-    STATE_READY = 1
-    STATE_DONE = 2
-    STATE_BLOCKED = 3
-  
+    STATE_DONE = 1
+    STATE_CANCELLED = 2
+    STATE_DELETED = 3
+    STATE_READY = 4
+    STATE_SHIP_WAIT = 5
+    STATE_ON_HOLD = 6
+    STATE_BACKORDER = 7
+    STATE_ADVANCE_BILL = 8
+
     STATE_NAMES = [
       ["New Order Item", STATE_NEW],
-      ["Billable", STATE_READY],
       ["Complete", STATE_DONE],
-      ["Blocked", STATE_BLOCKED]
+      ["Cancelled", STATE_CANCELLED],
+      ["* DELETED *", STATE_DELETED],
+      ["Ready for Processing", STATE_READY],
+      ["Awaiting Shipment", STATE_SHIP_WAIT],
+      ["On Hold", STATE_ON_HOLD],
+      ["Back-Order", STATE_BACKORDER],
+      ["Bill-in-Advance", STATE_ADVANCE_BILL]
     ].freeze
-  
+
     SERVICE_PERIOD_ONEOFF = 0
     SERVICE_PERIOD_HOURLY = 1
     SERVICE_PERIOD_DAILY = 2

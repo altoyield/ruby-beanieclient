@@ -104,7 +104,7 @@ module Beanie
     #
     # Run a REST PUT against the Beanie API.
     def self.put(data, opts = {})
-      response = RestClient.put(build_url(opts), data, headers=set_headers)
+      response = RestClient.put(build_url(opts), data.to_json, headers=set_headers)
       if response.body and response.body.length > 0
         JSON.parse(response.body)
       else

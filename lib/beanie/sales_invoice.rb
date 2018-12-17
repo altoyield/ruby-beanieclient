@@ -31,24 +31,26 @@ module Beanie
   class SalesInvoice < Api
     attr_accessor :id, :date, :due_date, :number, :is_credit_note, :local_gross, :shipping, :sub_total, :tax
     attr_accessor :tax_point, :sales_order_id, :original_invoice, :state
-  
+
     STATE_NEW = 0
-    STATE_POSTED = 1
-    STATE_SENT = 2
-    STATE_PAID = 3
-    STATE_CANCELLED = 4
-    STATE_OVERDUE1 = 5
-    STATE_OVERDUE2 = 6
-    STATE_OVERDUE3 = 7
-    STATE_OVERDUE4 = 8
-    STATE_OVERDUE5 = 9
-  
+    STATE_PAID = 1
+    STATE_CANCELLED = 2
+    STATE_DELETED = 3
+    STATE_POSTED = 4
+    STATE_SENT = 5
+    STATE_OVERDUE1 = 6
+    STATE_OVERDUE2 = 7
+    STATE_OVERDUE3 = 8
+    STATE_OVERDUE4 = 9
+    STATE_OVERDUE5 = 10
+
     STATE_NAMES = [
       ["New (Unposted)", STATE_NEW],
-      ["Posted to Journal", STATE_POSTED],
-      ["Sent to Customer", STATE_SENT],
-      ["Paid", STATE_PAID],
+      ["Paid in Full", STATE_PAID],
       ["Cancelled", STATE_CANCELLED],
+      ["* DELETED *", STATE_DELETED],
+      ["Not Yet Issued", STATE_POSTED],
+      ["Issued to Customer", STATE_SENT],
       ["Overdue (Past 30 days)", STATE_OVERDUE1],
       ["Overdue (Past 45 days)", STATE_OVERDUE2],
       ["Overdue (Over 60 days)", STATE_OVERDUE3],

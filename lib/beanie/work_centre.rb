@@ -71,6 +71,28 @@ module Beanie
     end
 
     #
+    # Commence work on the specified production order
+    def start_order(production_order, message)
+      WorkCentre.put({:message => message},
+            :url => "/work_centres/#{@id}/start_order/#{production_order.id}")
+    end
+
+    #
+    # Mark work as completed on the current production order
+    def stop_order(message, success=false, hold=false)
+      WorkCentre.put({:message => message,
+                      :success => success,
+                      :hold => hold},
+                  :url => "/work_centres/#{@id}/stop_order")
+    end
+
+    #
+    # Mark the current operation (if any) as complete
+    def operation_complete(status)
+      WorkCentre.put({:status => status}, :url => "/work_centres/#{@id}/complete")
+    end
+
+    #
     # Get the private data
     def private_data
       response = WorkCentre.get(:url => "/work_centres/#{@id}/private_data")

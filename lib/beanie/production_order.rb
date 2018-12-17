@@ -32,6 +32,32 @@ module Beanie
     attr_accessor :id, :number, :state, :quantity, :notes
     attr_accessor :sales_order_id, :bill_of_material_id, :work_centre_group_id
 
+    STATE_NEW = 0
+    STATE_DONE = 1
+    STATE_FAILED = 2
+    STATE_DELETED = 3
+    STATE_ORDER_HOLD = 4
+    STATE_IN_QUEUE = 5
+    STATE_ASSIGNED = 6
+    STATE_STARTED = 7
+
+    STATE_NAMES = [
+      ["New Production Order", STATE_NEW],
+      ["Order Complete", STATE_DONE],
+      ["Production Failed", STATE_FAILED],
+      ["* DELETED *", STATE_DELETED],
+      ["Blocked by Sales Order", STATE_ORDER_HOLD],
+      ["In Scheduler Queue", STATE_IN_QUEUE],
+      ["In Work Centre Queue ", STATE_ASSIGNED],
+      ["In Process", STATE_STARTED]
+    ].freeze
+
+    #
+    # Pretty name for the state
+    def state_name
+      STATE_NAMES[state][0]
+    end
+
     #
     # Initialize instance variables
     def initialize
@@ -44,6 +70,18 @@ module Beanie
       @bill_of_material_id = nil
       @work_centre_group_id = nil
       @_private_data = nil
+    end
+
+    #
+    # Notify system we have started work on this order
+    def start_work(message)
+      ProductionOrder.put({:message => message}, :url => "/production_orders/#{@id}/start")
+    end
+
+    #
+    # Notify system we have stopped work on this order
+    def stop_work(message)
+      ProductionOrder.put({:message => message}, :url => "/production_orders/#{@id}/start")
     end
 
     #

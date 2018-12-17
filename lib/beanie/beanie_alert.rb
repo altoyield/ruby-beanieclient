@@ -30,15 +30,19 @@
 module Beanie
   class BeanieAlert < Api
     attr_accessor :id, :state, :message, :url, :member_id
-  
+
     STATE_NEW = 0
-    STATE_READ = 1
-    STATE_ARCHIVED = 2
-  
+    STATE_ARCHIVED = 1
+    STATE_CANCELLED = 2
+    STATE_DELETED = 3
+    STATE_READ = 4
+
     STATE_NAMES = [
       ["New (Unread)", STATE_NEW],
-      ["Acknowledged (Read)", STATE_READ],
-      ["Archived", STATE_ARCHIVED]
+      ["Archived", STATE_ARCHIVED],
+      ["Cancelled", STATE_CANCELLED],
+      ["* DELETED *", STATE_DELETED],
+      ["Acknowledged (Read)", STATE_READ]
     ].freeze
 
     #
