@@ -14,19 +14,43 @@ require 'date'
 
 module Beanie
   class CustomerLedger
-    attr_accessor :id
+    attr_accessor :date
+
+    attr_accessor :ledger_type
+
+    attr_accessor :narrative
+
+    attr_accessor :amount
+
+    attr_accessor :reconciled
+
+    attr_accessor :journal_id
+
+    attr_accessor :sales_invoice_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
+        :'date' => :'date',
+        :'ledger_type' => :'ledger_type',
+        :'narrative' => :'narrative',
+        :'amount' => :'amount',
+        :'reconciled' => :'reconciled',
+        :'journal_id' => :'journal_id',
+        :'sales_invoice_id' => :'sales_invoice_id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Integer'
+        :'date' => :'Date',
+        :'ledger_type' => :'String',
+        :'narrative' => :'String',
+        :'amount' => :'Float',
+        :'reconciled' => :'BOOLEAN',
+        :'journal_id' => :'Integer',
+        :'sales_invoice_id' => :'Integer'
       }
     end
 
@@ -38,8 +62,32 @@ module Beanie
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.has_key?(:'date')
+        self.date = attributes[:'date']
+      end
+
+      if attributes.has_key?(:'ledger_type')
+        self.ledger_type = attributes[:'ledger_type']
+      end
+
+      if attributes.has_key?(:'narrative')
+        self.narrative = attributes[:'narrative']
+      end
+
+      if attributes.has_key?(:'amount')
+        self.amount = attributes[:'amount']
+      end
+
+      if attributes.has_key?(:'reconciled')
+        self.reconciled = attributes[:'reconciled']
+      end
+
+      if attributes.has_key?(:'journal_id')
+        self.journal_id = attributes[:'journal_id']
+      end
+
+      if attributes.has_key?(:'sales_invoice_id')
+        self.sales_invoice_id = attributes[:'sales_invoice_id']
       end
     end
 
@@ -47,8 +95,24 @@ module Beanie
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @date.nil?
+        invalid_properties.push('invalid value for "date", date cannot be nil.')
+      end
+
+      if @ledger_type.nil?
+        invalid_properties.push('invalid value for "ledger_type", ledger_type cannot be nil.')
+      end
+
+      if @narrative.nil?
+        invalid_properties.push('invalid value for "narrative", narrative cannot be nil.')
+      end
+
+      if @amount.nil?
+        invalid_properties.push('invalid value for "amount", amount cannot be nil.')
+      end
+
+      if @reconciled.nil?
+        invalid_properties.push('invalid value for "reconciled", reconciled cannot be nil.')
       end
 
       invalid_properties
@@ -57,7 +121,11 @@ module Beanie
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
+      return false if @date.nil?
+      return false if @ledger_type.nil?
+      return false if @narrative.nil?
+      return false if @amount.nil?
+      return false if @reconciled.nil?
       true
     end
 
@@ -66,7 +134,13 @@ module Beanie
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id
+          date == o.date &&
+          ledger_type == o.ledger_type &&
+          narrative == o.narrative &&
+          amount == o.amount &&
+          reconciled == o.reconciled &&
+          journal_id == o.journal_id &&
+          sales_invoice_id == o.sales_invoice_id
     end
 
     # @see the `==` method
@@ -78,7 +152,7 @@ module Beanie
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id].hash
+      [date, ledger_type, narrative, amount, reconciled, journal_id, sales_invoice_id].hash
     end
 
     # Builds the object from hash

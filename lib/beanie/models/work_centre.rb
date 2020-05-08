@@ -13,20 +13,53 @@ Swagger Codegen version: 2.4.0-SNAPSHOT
 require 'date'
 
 module Beanie
+  # Work Centre Details
   class WorkCentre
     attr_accessor :id
+
+    attr_accessor :created_at
+
+    attr_accessor :updated_at
+
+    attr_accessor :name
+
+    attr_accessor :description
+
+    attr_accessor :work_centre_group_id
+
+    attr_accessor :location
+
+    attr_accessor :state
+
+    attr_accessor :production_order_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
+        :'id' => :'id',
+        :'created_at' => :'created_at',
+        :'updated_at' => :'updated_at',
+        :'name' => :'name',
+        :'description' => :'description',
+        :'work_centre_group_id' => :'work_centre_group_id',
+        :'location' => :'location',
+        :'state' => :'state',
+        :'production_order_id' => :'production_order_id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Integer'
+        :'id' => :'Integer',
+        :'created_at' => :'DateTime',
+        :'updated_at' => :'DateTime',
+        :'name' => :'String',
+        :'description' => :'String',
+        :'work_centre_group_id' => :'Integer',
+        :'location' => :'String',
+        :'state' => :'Integer',
+        :'production_order_id' => :'Integer'
       }
     end
 
@@ -41,23 +74,50 @@ module Beanie
       if attributes.has_key?(:'id')
         self.id = attributes[:'id']
       end
+
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
+      end
+
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'description')
+        self.description = attributes[:'description']
+      end
+
+      if attributes.has_key?(:'work_centre_group_id')
+        self.work_centre_group_id = attributes[:'work_centre_group_id']
+      end
+
+      if attributes.has_key?(:'location')
+        self.location = attributes[:'location']
+      end
+
+      if attributes.has_key?(:'state')
+        self.state = attributes[:'state']
+      end
+
+      if attributes.has_key?(:'production_order_id')
+        self.production_order_id = attributes[:'production_order_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
       true
     end
 
@@ -66,7 +126,15 @@ module Beanie
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id
+          id == o.id &&
+          created_at == o.created_at &&
+          updated_at == o.updated_at &&
+          name == o.name &&
+          description == o.description &&
+          work_centre_group_id == o.work_centre_group_id &&
+          location == o.location &&
+          state == o.state &&
+          production_order_id == o.production_order_id
     end
 
     # @see the `==` method
@@ -78,7 +146,7 @@ module Beanie
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id].hash
+      [id, created_at, updated_at, name, description, work_centre_group_id, location, state, production_order_id].hash
     end
 
     # Builds the object from hash

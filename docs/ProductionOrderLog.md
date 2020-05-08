@@ -3,6 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Integer** |  | 
+**date** | **DateTime** |  | 
+**member** | **String** |  | 
+**message** | **String** |  | 
 
 

@@ -14,19 +14,27 @@ require 'date'
 
 module Beanie
   class CustomerNote
-    attr_accessor :id
+    attr_accessor :date
+
+    attr_accessor :author
+
+    attr_accessor :note
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
+        :'date' => :'date',
+        :'author' => :'author',
+        :'note' => :'note'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Integer'
+        :'date' => :'DateTime',
+        :'author' => :'String',
+        :'note' => :'String'
       }
     end
 
@@ -38,8 +46,16 @@ module Beanie
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.has_key?(:'date')
+        self.date = attributes[:'date']
+      end
+
+      if attributes.has_key?(:'author')
+        self.author = attributes[:'author']
+      end
+
+      if attributes.has_key?(:'note')
+        self.note = attributes[:'note']
       end
     end
 
@@ -47,8 +63,16 @@ module Beanie
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @date.nil?
+        invalid_properties.push('invalid value for "date", date cannot be nil.')
+      end
+
+      if @author.nil?
+        invalid_properties.push('invalid value for "author", author cannot be nil.')
+      end
+
+      if @note.nil?
+        invalid_properties.push('invalid value for "note", note cannot be nil.')
       end
 
       invalid_properties
@@ -57,7 +81,9 @@ module Beanie
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
+      return false if @date.nil?
+      return false if @author.nil?
+      return false if @note.nil?
       true
     end
 
@@ -66,7 +92,9 @@ module Beanie
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id
+          date == o.date &&
+          author == o.author &&
+          note == o.note
     end
 
     # @see the `==` method
@@ -78,7 +106,7 @@ module Beanie
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id].hash
+      [date, author, note].hash
     end
 
     # Builds the object from hash

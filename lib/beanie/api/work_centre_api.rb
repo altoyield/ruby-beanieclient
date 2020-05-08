@@ -19,58 +19,6 @@ module Beanie
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Creates a new work centre in the system
-    # @param work_centres Work centre to add to the system
-    # @param [Hash] opts the optional parameters
-    # @return [WorkCentre]
-    def add_work_centre(work_centres, opts = {})
-      data, _status_code, _headers = add_work_centre_with_http_info(work_centres, opts)
-      data
-    end
-
-    # Creates a new work centre in the system
-    # @param work_centres Work centre to add to the system
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(WorkCentre, Fixnum, Hash)>] WorkCentre data, response status code and response headers
-    def add_work_centre_with_http_info(work_centres, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: WorkCentreApi.add_work_centre ...'
-      end
-      # verify the required parameter 'work_centres' is set
-      if @api_client.config.client_side_validation && work_centres.nil?
-        fail ArgumentError, "Missing the required parameter 'work_centres' when calling WorkCentreApi.add_work_centre"
-      end
-      # resource path
-      local_var_path = '/work_centres'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(work_centres)
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'WorkCentre')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: WorkCentreApi#add_work_centre\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
     # Find Work centre by ID
     # Returns a single work centre if the user has access
     # @param id ID of work centre to fetch
@@ -127,27 +75,33 @@ module Beanie
     end
     # All work centre
     # Returns all work centre from the system that the user has access to
+    # @param work_centre_group_id ID of Work Centre Group for list of Work Centres
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :tags tags to filter by
     # @option opts [Integer] :limit Maximum number of results to return
     # @return [Array<WorkCentre>]
-    def find_work_centres(opts = {})
-      data, _status_code, _headers = find_work_centres_with_http_info(opts)
+    def find_work_centres(work_centre_group_id, opts = {})
+      data, _status_code, _headers = find_work_centres_with_http_info(work_centre_group_id, opts)
       data
     end
 
     # All work centre
     # Returns all work centre from the system that the user has access to
+    # @param work_centre_group_id ID of Work Centre Group for list of Work Centres
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :tags tags to filter by
     # @option opts [Integer] :limit Maximum number of results to return
     # @return [Array<(Array<WorkCentre>, Fixnum, Hash)>] Array<WorkCentre> data, response status code and response headers
-    def find_work_centres_with_http_info(opts = {})
+    def find_work_centres_with_http_info(work_centre_group_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: WorkCentreApi.find_work_centres ...'
       end
+      # verify the required parameter 'work_centre_group_id' is set
+      if @api_client.config.client_side_validation && work_centre_group_id.nil?
+        fail ArgumentError, "Missing the required parameter 'work_centre_group_id' when calling WorkCentreApi.find_work_centres"
+      end
       # resource path
-      local_var_path = '/work_centres'
+      local_var_path = '/work_centre_groups/{work_centre_group_id}/work_centres'.sub('{' + 'work_centre_group_id' + '}', work_centre_group_id.to_s)
 
       # query parameters
       query_params = {}

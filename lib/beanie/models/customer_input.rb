@@ -13,20 +13,37 @@ Swagger Codegen version: 2.4.0-SNAPSHOT
 require 'date'
 
 module Beanie
+  # Customer Details
   class CustomerInput
-    attr_accessor :id
+    attr_accessor :name
+
+    attr_accessor :currency_code
+
+    attr_accessor :net_terms
+
+    attr_accessor :credit_limit
+
+    attr_accessor :customer_vat
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
+        :'name' => :'name',
+        :'currency_code' => :'currency_code',
+        :'net_terms' => :'net_terms',
+        :'credit_limit' => :'credit_limit',
+        :'customer_vat' => :'customer_vat'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Integer'
+        :'name' => :'String',
+        :'currency_code' => :'String',
+        :'net_terms' => :'Integer',
+        :'credit_limit' => :'Float',
+        :'customer_vat' => :'String'
       }
     end
 
@@ -38,8 +55,24 @@ module Beanie
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'currency_code')
+        self.currency_code = attributes[:'currency_code']
+      end
+
+      if attributes.has_key?(:'net_terms')
+        self.net_terms = attributes[:'net_terms']
+      end
+
+      if attributes.has_key?(:'credit_limit')
+        self.credit_limit = attributes[:'credit_limit']
+      end
+
+      if attributes.has_key?(:'customer_vat')
+        self.customer_vat = attributes[:'customer_vat']
       end
     end
 
@@ -47,8 +80,12 @@ module Beanie
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @currency_code.nil?
+        invalid_properties.push('invalid value for "currency_code", currency_code cannot be nil.')
       end
 
       invalid_properties
@@ -57,7 +94,8 @@ module Beanie
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
+      return false if @name.nil?
+      return false if @currency_code.nil?
       true
     end
 
@@ -66,7 +104,11 @@ module Beanie
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id
+          name == o.name &&
+          currency_code == o.currency_code &&
+          net_terms == o.net_terms &&
+          credit_limit == o.credit_limit &&
+          customer_vat == o.customer_vat
     end
 
     # @see the `==` method
@@ -78,7 +120,7 @@ module Beanie
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id].hash
+      [name, currency_code, net_terms, credit_limit, customer_vat].hash
     end
 
     # Builds the object from hash

@@ -13,20 +13,57 @@ Swagger Codegen version: 2.4.0-SNAPSHOT
 require 'date'
 
 module Beanie
+  # Production Order Details
   class ProductionOrder
+    attr_accessor :priority
+
+    attr_accessor :quantity
+
+    attr_accessor :notes
+
+    attr_accessor :bill_of_materials_id
+
+    attr_accessor :sales_order_id
+
     attr_accessor :id
+
+    attr_accessor :work_centre_group_id
+
+    attr_accessor :job_order
+
+    attr_accessor :state
+
+    attr_accessor :logs
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
+        :'priority' => :'priority',
+        :'quantity' => :'quantity',
+        :'notes' => :'notes',
+        :'bill_of_materials_id' => :'bill_of_materials_id',
+        :'sales_order_id' => :'sales_order_id',
+        :'id' => :'id',
+        :'work_centre_group_id' => :'work_centre_group_id',
+        :'job_order' => :'job_order',
+        :'state' => :'state',
+        :'logs' => :'logs'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Integer'
+        :'priority' => :'Integer',
+        :'quantity' => :'Integer',
+        :'notes' => :'String',
+        :'bill_of_materials_id' => :'Integer',
+        :'sales_order_id' => :'Integer',
+        :'id' => :'Integer',
+        :'work_centre_group_id' => :'Integer',
+        :'job_order' => :'Integer',
+        :'state' => :'String',
+        :'logs' => :'Array<ProductionOrderLog>'
       }
     end
 
@@ -38,8 +75,46 @@ module Beanie
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'priority')
+        self.priority = attributes[:'priority']
+      end
+
+      if attributes.has_key?(:'quantity')
+        self.quantity = attributes[:'quantity']
+      end
+
+      if attributes.has_key?(:'notes')
+        self.notes = attributes[:'notes']
+      end
+
+      if attributes.has_key?(:'bill_of_materials_id')
+        self.bill_of_materials_id = attributes[:'bill_of_materials_id']
+      end
+
+      if attributes.has_key?(:'sales_order_id')
+        self.sales_order_id = attributes[:'sales_order_id']
+      end
+
       if attributes.has_key?(:'id')
         self.id = attributes[:'id']
+      end
+
+      if attributes.has_key?(:'work_centre_group_id')
+        self.work_centre_group_id = attributes[:'work_centre_group_id']
+      end
+
+      if attributes.has_key?(:'job_order')
+        self.job_order = attributes[:'job_order']
+      end
+
+      if attributes.has_key?(:'state')
+        self.state = attributes[:'state']
+      end
+
+      if attributes.has_key?(:'logs')
+        if (value = attributes[:'logs']).is_a?(Array)
+          self.logs = value
+        end
       end
     end
 
@@ -47,8 +122,12 @@ module Beanie
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @priority.nil?
+        invalid_properties.push('invalid value for "priority", priority cannot be nil.')
+      end
+
+      if @quantity.nil?
+        invalid_properties.push('invalid value for "quantity", quantity cannot be nil.')
       end
 
       invalid_properties
@@ -57,7 +136,8 @@ module Beanie
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
+      return false if @priority.nil?
+      return false if @quantity.nil?
       true
     end
 
@@ -66,7 +146,16 @@ module Beanie
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id
+          priority == o.priority &&
+          quantity == o.quantity &&
+          notes == o.notes &&
+          bill_of_materials_id == o.bill_of_materials_id &&
+          sales_order_id == o.sales_order_id &&
+          id == o.id &&
+          work_centre_group_id == o.work_centre_group_id &&
+          job_order == o.job_order &&
+          state == o.state &&
+          logs == o.logs
     end
 
     # @see the `==` method
@@ -78,7 +167,7 @@ module Beanie
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id].hash
+      [priority, quantity, notes, bill_of_materials_id, sales_order_id, id, work_centre_group_id, job_order, state, logs].hash
     end
 
     # Builds the object from hash

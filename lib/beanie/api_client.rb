@@ -31,7 +31,7 @@ module Beanie
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "BeanieAPI/0.2.2/ruby"
+      @user_agent = "BeanieAPI/0.8.1/ruby"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
